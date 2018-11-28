@@ -23,6 +23,13 @@ class Owlet(object):
         self.properties = [
             'OXYGEN_LEVEL',
             'HEART_RATE',
+            'BASE_STATION_ON',
+            'BATT_LEVEL',
+            'MOVEMENT',
+            'SOCK_OFF',
+            'CHARGE_STATUS',
+            'BABY_NAME',
+            'SOCK_CONNECTION',			
         ]
 
         self._auth_token = None
@@ -33,7 +40,7 @@ class Owlet(object):
 
     def _login(self):
         '''Generate a new auth token.'''
-        login_url = 'https://user.aylanetworks.com:443/users/sign_in.json'
+        login_url = 'https://user-field.aylanetworks.com/users/sign_in.json'
         login_payload = {
           "user": {
             "email": self.email,
