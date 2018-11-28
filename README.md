@@ -1,5 +1,6 @@
 # python-owlet
 Tested on Ubuntu 18.04 LTS with Python 2.7.15rc1
+
 usage: python owlet_stats.py (email) (password)
 ## Legal
 
