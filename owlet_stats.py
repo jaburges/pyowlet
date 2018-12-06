@@ -198,4 +198,4 @@ if __name__ == "__main__":
         password=password
     )
     for data in o.get_data():
-        print data
+        print(data)
