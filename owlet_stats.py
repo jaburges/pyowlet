@@ -4,7 +4,7 @@ import time
 
 import requests
 import logging
-__author__ = 'fgorodishter'
+__author__ = 'fgorodishter and ang3l12'
 
 # configure logging
 logging.basicConfig()
