@@ -1,28 +1,19 @@
-pyharmony
+pyowlet
 =========
 
-Python library for connecting to and controlling the Logitech Harmony Link
+Python library for connecting to the Owlet Unnoficial API hosted by Ayla Networks IOT Cloud
 
 Protocol
 --------
 
-As the harmony protocol is being worked out, notes are in PROTOCOL.md.
-
-Status
-------
-
-* Authentication to Logitech's web service working.
-* Authentication to harmony device working.
-* Querying for entire device information
-* Sending a simple command to harmony device working.
+As the Owlet API is being worked out, notes are in PROTOCOL.md.
 
 Usage
 -----
 
-To query your device's configuration state:
+To query your device's readings:
 
-    PYTHONPATH="." python harmony --email user@example.com --password pass \
-        --harmony_ip 192.168.0.1 show_config
+    PYTHONPATH="." python pyowlet --email user@example.com --password pass
 
 For full argument information on the command-line tool:
 
@@ -31,7 +22,4 @@ For full argument information on the command-line tool:
 TODO
 ----
 
-* Figure out how to detect when the session token expires so we can get a new
-  one.
-* Figure out a good way of sending commands based on sync state.
-* Is it possible to update device configuration?
+* TEST IT!
