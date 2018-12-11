@@ -1,3 +1,5 @@
+#This is the OLD README! read the new one in the pyowlet folder. This is for the original owlet_stats.py script, which is still here for history / documentation.
+
 # python-owlet
 Tested on Ubuntu 18.04 LTS with Python 2.7.15rc1 and Python 3.6.7
 
