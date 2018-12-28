@@ -25,6 +25,6 @@ else:
     ]
 
     for measure in properties:
-      val = pyowletClient.get_property(measure)
-      print(val)
-      print('\n\n\n')
+        val = pyowletClient.get_property(measure)
+        print(val)
+        print('\n\n\n')
