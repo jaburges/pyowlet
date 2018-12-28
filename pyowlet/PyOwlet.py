@@ -15,9 +15,7 @@ class PyOwlet:
         self.username = username
         self.password = password
         self.headers = None
-        self.auth_header = {'content-type': 'application/json',
-                            'accept': 'application/json',
-                            'Authorization': 'auth_token'}
+        self.auth_header = None
 
         self.auth_token = self.login(username, password)
         self.dsn = self.get_dsn()
