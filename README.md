@@ -11,13 +11,9 @@ As the Owlet API is being worked out, notes are in PROTOCOL.md.
 Usage
 -----
 
-To query your device's readings:
+To query your device's readings using the provided example file:
 
-    PYTHONPATH="." python pyowlet --email user@example.com --password pass
-
-For full argument information on the command-line tool:
-
-    PYTHONPATH="." python harmony
+    python3 example.py user@example.com password
 
 TODO
 ----
