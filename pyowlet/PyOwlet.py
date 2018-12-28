@@ -20,8 +20,9 @@ class PyOwlet:
                             'Authorization': 'auth_token'}
 
         self.auth_token = self.login(username, password)
+        self.dsn = self.get_dsn()
 
-    def get_auth_token(self):
+    def get_auth_header(self):
         '''
         Get the auth token. If the current token has not expired, return that.
         Otherwise login and get a new token and return that token.
@@ -32,31 +33,29 @@ class PyOwlet:
             logging.debug('Auth Token expired, need to get a new one')
             self.login(self.username, self.password)
 
-        return self.auth_token
+        self.auth_header = {'content-type': 'application/json',
+                            'accept': 'application/json',
+                            'Authorization': 'auth_token ' + self.auth_token
+                            }
+
+        return self.auth_header
 
     def get_dsn(self):
         dsnurl = 'https://ads-field.aylanetworks.com/apiv1/devices.json'
-        # auth_header = {'content-type': 'application/json',
-        #                'accept': 'application/json',
-        #                'Authorization': 'auth_token'}
-        response = requests.get(dsnurl, headers=self.auth_header)
-        #data = auth_header(url)
+        response = requests.get(dsnurl, headers=self.get_auth_header())
+        # data = auth_header(url)
         json_data = response.json()
         # FIXME: this is just returning the first device in the list
         # dsn = json_data[0]['device']['dsn']
         return json_data[0]['device']['dsn']
 
     def get_property(self, measure):
-        self.auth_header = {'content-type': 'application/json',
-                            'accept': 'application/json',
-                            'Authorization': 'auth_token ' + self.get_auth_token()
-                            }
-        dsn = self.get_dsn()
+
         properties_url = 'https://ads-field.aylanetworks.com/apiv1/dsns/{}/properties'.format(
-            dsn)
+            self.dsn)
 
         measure_url = properties_url + '/' + measure
-        response = requests.get(measure_url, headers=self.auth_header)
+        response = requests.get(measure_url, headers=self.get_auth_header())
         data = response.json()['property']
         return data
 
