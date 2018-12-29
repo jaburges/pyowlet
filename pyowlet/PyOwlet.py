@@ -9,10 +9,11 @@ logging.basicConfig(filename='pyowlet.log', level=logging.DEBUG)
 
 class PyOwlet(object):
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, prop_ttl=15):
         self.auth_token = None
         self.expire_time = 0
         self.prop_expire_time = 0
+        self.prop_ttl = prop_ttl
         self.username = username
         self.password = password
         self.headers = None
@@ -80,7 +81,7 @@ class PyOwlet(object):
 
             self.__setattr__(name, val)
 
-        self.prop_expire_time = time.time() + 30
+        self.prop_expire_time = time.time() + self.prop_ttl
 
     def __getattribute__(self, attr):
 
