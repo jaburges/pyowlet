@@ -4,7 +4,7 @@ import time
 from pprint import pprint
 
 if len(sys.argv) != 3:
-    print('usage:  python3 test.py username password \n')
+    print('usage:  python3 example.py username password \n')
 else:
 
     print('using username: ' + sys.argv[1] + '\n')
