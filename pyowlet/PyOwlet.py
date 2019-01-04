@@ -14,6 +14,8 @@ class PyOwlet(object):
         self.expire_time = 0
         self.prop_expire_time = 0
         self.prop_ttl = prop_ttl
+        self.app_active_expire = 0
+        self.app_active_ttl = 5
         self.username = username
         self.password = password
         self.headers = None
@@ -53,7 +55,10 @@ class PyOwlet(object):
         # dsn = json_data[0]['device']['dsn']
         return json_data[0]['device']['dsn']
 
-    def get_properties(self, measure=None):
+    def get_properties(self, measure=None, set_active=True):
+
+        if set_active is True:
+            self.set_app_active()
 
         properties_url = 'https://ads-field.aylanetworks.com/apiv1/dsns/{}/properties'.format(
             self.dsn)
@@ -71,21 +76,23 @@ class PyOwlet(object):
 
     def set_app_active(self):
 
-        if self.app_active_prop_id is None:
-            prop = self.get_properties('APP_ACTIVE')
-            self.app_active_prop_id = prop['key']
+        if self.app_active_expire < time.time():
 
-        data_point_url = 'https://ads-field.aylanetworks.com/apiv1/properties/{}/datapoints.json'.format(
-            self.app_active_prop_id)
+            if self.app_active_prop_id is None:
+                prop = self.get_properties('APP_ACTIVE', False)
+                self.app_active_prop_id = prop['key']
 
-        payload = {'datapoint': {'value': 1}}
-        resp = requests.post(
-            data_point_url,
-            json=payload,
-            headers=self.get_auth_header()
-        )
+            data_point_url = 'https://ads-field.aylanetworks.com/apiv1/properties/{}/datapoints.json'.format(
+                self.app_active_prop_id)
 
-        logging.debug(resp)
+            payload = {'datapoint': {'value': 1}}
+            resp = requests.post(
+                data_point_url,
+                json=payload,
+                headers=self.get_auth_header()
+            )
+
+            self.app_active_expire = time.time() + self.app_active_ttl
 
     def update_properties(self):
 
