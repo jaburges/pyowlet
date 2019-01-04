@@ -19,6 +19,7 @@ class PyOwlet(object):
         self.headers = None
         self.auth_header = None
         self.monitored_properties = []
+        self.app_active_prop_id = None
 
         self.auth_token = self.login(username, password)
         self.dsn = self.get_dsn()
@@ -68,7 +69,27 @@ class PyOwlet(object):
 
         return data
 
+    def set_app_active(self):
+
+        if self.app_active_prop_id is None:
+            prop = self.get_properties('APP_ACTIVE')
+            self.app_active_prop_id = prop['key']
+
+        data_point_url = 'https://ads-field.aylanetworks.com/apiv1/properties/{}/datapoints.json'.format(
+            self.app_active_prop_id)
+
+        payload = {'datapoint': {'value': 1}}
+        resp = requests.post(
+            data_point_url,
+            json=payload,
+            headers=self.get_auth_header()
+        )
+
+        logging.debug(resp)
+
     def update_properties(self):
+
+        self.set_app_active()
 
         data = self.get_properties()
 

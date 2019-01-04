@@ -1,3 +1,6 @@
 .vscode
 pyowlet/__pycache__
 pyowlet.log
+build
+dist
+pyowlet.egg-info

@@ -21,7 +21,7 @@ setup(
     url='https://github.com/craigjmidwinter/pyowlet',
 
     # Author details
-    author='craigjmidwinter forked from angel12',
+    author='craigjmidwinter, angel12',
     author_email='craig.j.midwinter@gmail.com',
 
     # What does your project relate to?
@@ -36,6 +36,5 @@ setup(
     # requirements files see:
     # https://packaging.python.org/en/latest/requirements.html
     install_requires=['requests'],
-    extras_require={
-    },
+    extras_require={},
 )
