@@ -47,7 +47,7 @@ class PyOwlet(object):
         return self.auth_header
 
     def get_dsn(self):
-        dsnurl = 'https://ads-field.aylanetworks.com/apiv1/devices.json'
+        dsnurl = 'https://ads-field-1a2039d9.aylanetworks.com/apiv1/devices.json'
         response = requests.get(dsnurl, headers=self.get_auth_header())
         # data = auth_header(url)
         json_data = response.json()
@@ -60,7 +60,7 @@ class PyOwlet(object):
         if set_active is True:
             self.set_app_active()
 
-        properties_url = 'https://ads-field.aylanetworks.com/apiv1/dsns/{}/properties'.format(
+        properties_url = 'https://ads-field-1a2039d9.aylanetworks.com/apiv1/dsns/{}/properties'.format(
             self.dsn)
 
         if measure is not None:
@@ -82,7 +82,7 @@ class PyOwlet(object):
                 prop = self.get_properties('APP_ACTIVE', False)
                 self.app_active_prop_id = prop['key']
 
-            data_point_url = 'https://ads-field.aylanetworks.com/apiv1/properties/{}/datapoints.json'.format(
+            data_point_url = 'https://ads-field-1a2039d9.aylanetworks.com/apiv1/properties/{}/datapoints.json'.format(
                 self.app_active_prop_id)
 
             payload = {'datapoint': {'value': 1}}
@@ -129,7 +129,7 @@ class PyOwlet(object):
         """
         self.headers = {'content-type': 'application/json',
                         'accept': 'application/json'}
-        login_url = 'https://user-field.aylanetworks.com/users/sign_in.json'
+        login_url = 'https://user-field-1a2039d9.aylanetworks.com/users/sign_in.json'
         login_payload = {
             "user": {
                 "email": email,
